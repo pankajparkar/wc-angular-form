@@ -1,3 +1,8 @@
 <router-outlet></router-outlet>
 
 <new-input></new-input>
+<form [formGroup]="form">
+  <input type="text" formControlName="name">
+</form>
+
+{{form.values}}

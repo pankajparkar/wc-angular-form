@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'waf-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'wc-angular-form';
+  form: FormGroup
+
+  constructor(private fb: FormBuilder) {
+
+  }
+
+  ngOninit () {
+    this.form = this.fb.group({
+      name: ['', Validators.required]
+    })
+  }
 }
