@@ -15,7 +15,7 @@ export class AppComponent {
 
   ngOninit () {
     this.form = this.fb.group({
-      name: ['', Validators.required]
+      firstName: ['', Validators.required]
     })
   }
 }
