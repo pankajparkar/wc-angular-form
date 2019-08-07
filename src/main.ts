@@ -19,16 +19,12 @@ class NewInput extends HTMLElement {
   }
 
   render () {
-    const element = `
-    <div>
-      <input type="text" placeholder="test" />
-    </div>
-    `
     // Create a shadow root
     var shadow = this.attachShadow({mode: 'open'});
-    var div = document.createElement('div');
-    div.innerHTML = element;
-    shadow.appendChild(div);
+    var input = document.createElement('input');
+    input.placeholder = 'Please enter value';
+    input.type = 'text';
+    shadow.appendChild(input);
   }
 }
 
