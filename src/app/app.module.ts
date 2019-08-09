@@ -11,7 +11,7 @@ const DEFAULT_VALUE_ACCESSOR = {
 };
 
 @Directive({
-  selector: 'new-input[formControlName] input,new-input',
+  selector: 'new-input',
   // template: '',
   host: {
       '(input)': '$any(this)._handleInput($event.target.value)',
