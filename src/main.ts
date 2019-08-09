@@ -11,7 +11,6 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-
 class NewInput extends HTMLElement {
   constructor () {
     super();
@@ -20,7 +19,7 @@ class NewInput extends HTMLElement {
 
   render () {
     // Create a shadow root
-    var shadow = this.attachShadow({mode: 'open'});
+    var shadow = this.attachShadow({mode: 'closed'});
     var input = document.createElement('input');
     input.placeholder = 'Please enter value';
     input.type = 'text';
