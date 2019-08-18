@@ -3,6 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Directive, forwardRef, Component } fr
 import { FormsModule, ReactiveFormsModule, DefaultValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { WcAdapterDirective } from './wc-adapter.directive';
 
 const DEFAULT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -28,7 +29,8 @@ class CustomElementDefaultValueAccessor extends DefaultValueAccessor {
 @NgModule({
   declarations: [
     AppComponent,
-    CustomElementDefaultValueAccessor
+    CustomElementDefaultValueAccessor,
+    WcAdapterDirective
   ],
   imports: [
     BrowserModule,
