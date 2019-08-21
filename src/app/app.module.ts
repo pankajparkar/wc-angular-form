@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Directive, forwardRef, Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, DefaultValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { WcAdapterDirective } from './wc-adapter.directive';
+import { OrigamiModule } from '@codebakery/origami';
 
 const DEFAULT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -35,7 +37,9 @@ class CustomElementDefaultValueAccessor extends DefaultValueAccessor {
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OrigamiModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import '@polymer/paper-input/paper-input';
 
 @Component({
   selector: 'waf-root',
