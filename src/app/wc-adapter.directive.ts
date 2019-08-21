@@ -5,6 +5,7 @@ import { ControlValueAccessor } from '@angular/forms';
   selector: '[wafWcAdapter][formControl],[wafWcAdapter][formControlName]'
 })
 export class WcAdapterDirective implements ControlValueAccessor {
+  _elementRef: any;
 
   constructor(private el: ElementRef) { }
 
@@ -25,9 +26,9 @@ export class WcAdapterDirective implements ControlValueAccessor {
     const element = this.el.nativeElement;
     const input = element.localName;
     const shadow = element.shadowRoot;
-    console.log(this.el, 'Element ', input === 'input' ? 
+    const elRef = input === 'input' ? 
       element:
-      shadow.querySelector('input')
-    )
+      shadow.querySelector('input');
+    this._elementRef = elRef;
   }
 }
