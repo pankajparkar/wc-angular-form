@@ -1,1 +1,6 @@
-<p>ngform works!</p>
+<form [formGroup]="form">
+    <input type="text" formControlName="firstName">
+    <paper-input formControlName="lastName" origami></paper-input>
+</form>
+
+Valid: {{form.valid}}
