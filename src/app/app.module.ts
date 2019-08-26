@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule, DefaultValueAccessor, NG_VALUE_ACCESS
 import { AppComponent } from './app.component';
 import { WcAdapterDirective } from './wc-adapter.directive';
 import { OrigamiModule } from '@codebakery/origami';
+import { AppRoutingModule } from './app-routing.module';
+import { NgformComponent } from './ngform/ngform.component';
 
 const DEFAULT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -32,14 +34,16 @@ class CustomElementDefaultValueAccessor extends DefaultValueAccessor {
   declarations: [
     AppComponent,
     CustomElementDefaultValueAccessor,
-    WcAdapterDirective
+    WcAdapterDirective,
+    NgformComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     OrigamiModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+    AppRoutingModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
