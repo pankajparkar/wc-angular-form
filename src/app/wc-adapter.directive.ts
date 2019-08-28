@@ -22,7 +22,7 @@ export class WcAdapterDirective implements ControlValueAccessor {
     this.onChange = fn;
   }
 
-  ngOnInit () {
+  ngOnInit (key) {
     const element = this.el.nativeElement;
     const input = element.localName;
     const shadow = element.shadowRoot;
@@ -30,5 +30,17 @@ export class WcAdapterDirective implements ControlValueAccessor {
       element:
       shadow.querySelector('input');
     this._elementRef = elRef;
+
+    // TODO: grab respective element and apply value
+    switch (key) {
+      case 'input':
+        break;
+      case 'textarea':
+        break;
+      case 'select':
+          break;
+      default:
+        break;
+    }
   }
 }
