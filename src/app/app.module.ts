@@ -10,36 +10,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgformComponent } from './ngform/ngform.component';
 import { PolymerComponent } from './polymer/polymer.component';
 import { WebcomponentComponent } from './webcomponent/webcomponent.component';
+import { StencilComponent } from './stencil/stencil.component';
 
-// const DEFAULT_VALUE_ACCESSOR = {
-//   provide: NG_VALUE_ACCESSOR,
-//   useExisting: forwardRef((() => CustomElementDefaultValueAccessor)),
-//   multi: true
-// };
-
-// @Directive({
-//   selector: 'new-input',
-//   // template: '',
-//   host: {
-//       '(input)': '$any(this)._handleInput($event.target.value)',
-//       '(blur)': 'onTouched()',
-//       '(compositionstart)': '$any(this)._compositionStart()',
-//       '(compositionend)': '$any(this)._compositionEnd($event.target.value)'
-//   },
-//   providers: [DEFAULT_VALUE_ACCESSOR]
-// }) 
-// class CustomElementDefaultValueAccessor extends DefaultValueAccessor {
-
-// }
 
 @NgModule({
   declarations: [
     AppComponent,
-    // CustomElementDefaultValueAccessor,
     WcAdapterDirective,
     NgformComponent,
     PolymerComponent,
-    WebcomponentComponent
+    WebcomponentComponent,
+    StencilComponent
   ],
   imports: [
     BrowserModule,
