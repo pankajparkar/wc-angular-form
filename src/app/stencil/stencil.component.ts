@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'waf-stencil',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StencilComponent implements OnInit {
 
-  constructor() { }
+  form = this.fb.group({
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('4', [Validators.required]),
+  })
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit () {
   }
 
 }

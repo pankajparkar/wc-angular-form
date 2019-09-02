@@ -1,1 +1,6 @@
-<p>stencil works!</p>
+<form [formGroup]="form">
+    <input type="text" formControlName="firstName">
+    <my-input formControlName="lastName" wafWcAdapter></my-input>
+</form>
+
+Valid: {{form.valid}}

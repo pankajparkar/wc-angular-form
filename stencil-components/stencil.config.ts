@@ -13,6 +13,6 @@ export const config: Config = {
     }
   ],
   bundles: [
-    {components: ['my-component']}
+    {components: ['my-input']}
   ]
 };
