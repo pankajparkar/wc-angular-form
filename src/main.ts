@@ -1,7 +1,7 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { webcomponentsReady } from '@codebakery/origami/polyfills';
-import { defineCustomElements } from '../../stencil-components/loader'
+import { defineCustomElements } from '../stencil-components/loader'
 
 // import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
