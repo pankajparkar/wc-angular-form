@@ -1,10 +1,12 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { webcomponentsReady } from '@codebakery/origami/polyfills';
-// import { defineCustomElements } from 'test-components/loader';
+import { defineCustomElements } from '../../stencil-components/loader'
 
 // import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+
+/// <reference types="@stencil/core" />
 
 if (environment.production) {
   enableProdMode();
@@ -22,7 +24,7 @@ webcomponentsReady()
     platformBrowserDynamic().bootstrapModule(AppModule);
   })
   .catch(err => console.error(err));
-// defineCustomElements(window);
+defineCustomElements(window);
 
 class NewInput extends HTMLElement {
   constructor () {
