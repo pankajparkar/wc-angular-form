@@ -1,11 +1,22 @@
-import { Directive, ElementRef } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Directive, ElementRef, Input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { fromEvent } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Directive({
-  selector: '[wafWcAdapter][formControl],[wafWcAdapter][formControlName]'
+  selector: '[wafWcAdapter]',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => WcAdapterDirective)
+    }
+  ]
 })
 export class WcAdapterDirective implements ControlValueAccessor {
   _elementRef: any;
+
+  @Input() elementType: string = 'input';
 
   constructor(private el: ElementRef) { }
 
@@ -14,30 +25,53 @@ export class WcAdapterDirective implements ControlValueAccessor {
 
   writeValue(obj: any): void {
     this.onChange(obj);
+    // TODO: make it compatible with all other kinds of variable
+    this._elementRef.value = obj;
   }
   registerOnChange(fn: any): void {
-    this.onTouched = fn;
-  }
-  registerOnTouched(fn: any): void {
     this.onChange = fn;
   }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
 
-  ngOnInit (key) {
+  ngOnInit() {
+    const elementType = this.elementType;
     const element = this.el.nativeElement;
-    const input = element.localName;
     const shadow = element.shadowRoot;
-    const elRef = input === 'input' ? 
+    const elementName = element.localName;
+    let elRef = elementName === elementType ? 
       element:
-      shadow.querySelector('input');
+      shadow.querySelector(elementType);
     this._elementRef = elRef;
 
     // TODO: grab respective element and apply value
-    switch (key) {
+    switch (elementType) {
       case 'input':
+        // Bind input events and change value attribute
+        fromEvent(elRef, 'input').pipe(
+          tap((e: any) => {
+            const value = e.target.value;
+            // TODO: Do assign value 
+            // 1. Check validity
+            this.onChange(value);
+            this.onTouched();
+
+            // 2. Assign validity
+            // if(this.control.valid) {
+            //   console.log('validity', this.control.valid)
+            // }
+
+            // 3. Assign value if valid
+            // Already assigned
+          })
+        ).subscribe()
         break;
       case 'textarea':
+        // Bind textarea events and change value attribute
         break;
       case 'select':
+          // Bind select events and change value attribute
           break;
       default:
         break;
