@@ -50,6 +50,7 @@ export class WcAdapterDirective implements ControlValueAccessor {
       // TODO: grab respective element and apply value
       switch (elementType) {
         case 'input':
+        case 'textarea':
           // Bind input events and change value attribute
           fromEvent(elRef, 'input')
             .pipe(
@@ -71,11 +72,19 @@ export class WcAdapterDirective implements ControlValueAccessor {
             )
             .subscribe();
           break;
-        case 'textarea':
-          // Bind textarea events and change value attribute
-          break;
         case 'select':
           // Bind select events and change value attribute
+          fromEvent(elRef, 'change')
+            .pipe(
+              tap((e: any) => {
+                const value = e.target.value;
+                // TODO: Do assign value
+                // 1. Check validity
+                this.onChange(value);
+                this.onTouched();
+              })
+            )
+            .subscribe();
           break;
         default:
           break;
