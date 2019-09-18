@@ -41,6 +41,22 @@ export class WcAdapterDirective implements ControlValueAccessor {
     const shadow = element.shadowRoot;
     const elementName = element.localName;
 
+    const tapEvent = tap((e: any) => {
+      const value = e.target.value;
+      // TODO: Do assign value
+      // 1. Check validity
+      this.onChange(value);
+      this.onTouched();
+
+      // 2. Assign validity
+      // if(this.control.valid) {
+      //   console.log('validity', this.control.valid)
+      // }
+
+      // 3. Assign value if valid
+      // Already assigned
+    })
+
     setTimeout(() => {
       let elRef =
         elementName === elementType
@@ -53,37 +69,13 @@ export class WcAdapterDirective implements ControlValueAccessor {
         case 'textarea':
           // Bind input events and change value attribute
           fromEvent(elRef, 'input')
-            .pipe(
-              tap((e: any) => {
-                const value = e.target.value;
-                // TODO: Do assign value
-                // 1. Check validity
-                this.onChange(value);
-                this.onTouched();
-
-                // 2. Assign validity
-                // if(this.control.valid) {
-                //   console.log('validity', this.control.valid)
-                // }
-
-                // 3. Assign value if valid
-                // Already assigned
-              })
-            )
+            .pipe(tapEvent)
             .subscribe();
           break;
         case 'select':
           // Bind select events and change value attribute
           fromEvent(elRef, 'change')
-            .pipe(
-              tap((e: any) => {
-                const value = e.target.value;
-                // TODO: Do assign value
-                // 1. Check validity
-                this.onChange(value);
-                this.onTouched();
-              })
-            )
+            .pipe(tapEvent)
             .subscribe();
           break;
         default:
