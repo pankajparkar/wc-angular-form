@@ -1,7 +1,7 @@
-import {Directive, ElementRef, Input, forwardRef} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {fromEvent} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import { Directive, ElementRef, Input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { fromEvent } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Directive({
   selector: '[wafWcAdapter]',
@@ -18,10 +18,10 @@ export class WcAdapterDirective implements ControlValueAccessor {
 
   @Input() elementType: string = 'input';
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef) { }
 
-  onChange = _ => {};
-  onTouched = () => {};
+  onChange = _ => { };
+  onTouched = () => { };
 
   writeValue(obj: any): void {
     this.onChange(obj);
@@ -61,26 +61,32 @@ export class WcAdapterDirective implements ControlValueAccessor {
       let elRef =
         elementName === elementType
           ? element
-          : shadow.querySelector(elementType);
+          : shadow.querySelector(elementType),
+        event;
       this._elementRef = elRef;
       // TODO: grab respective element and apply value
       switch (elementType) {
         case 'input':
         case 'textarea':
           // Bind input events and change value attribute
-          fromEvent(elRef, 'input')
-            .pipe(tapEvent)
-            .subscribe();
+          event = fromEvent(elRef, 'input')
           break;
         case 'select':
           // Bind select events and change value attribute
-          fromEvent(elRef, 'change')
-            .pipe(tapEvent)
-            .subscribe();
+          event = fromEvent(elRef, 'change')
+          break;
+        case 'checkbox':
+          // Bind select events and change value attribute
+          event = fromEvent(elRef, 'change')
+          break;
+        case 'radio':
+          // Bind select events and change value attribute
+          event = fromEvent(elRef, 'change')
           break;
         default:
           break;
       }
+      event.pipe(tapEvent).subscribe();
     }, 1000); // TODO: Remove timer hack 
   }
 }
