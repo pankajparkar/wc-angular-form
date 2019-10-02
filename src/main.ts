@@ -42,4 +42,51 @@ class NewInput extends HTMLElement {
   }
 }
 
+class NewCheckbox extends HTMLElement {
+  constructor () {
+    super();
+    this.render();
+  }
+
+  render () {
+    // Create a shadow root
+    var shadow = this.attachShadow({mode: 'open'});
+    var input = document.createElement('input');
+    input.type = 'checkbox';
+    shadow.appendChild(input);
+  }
+}
+
+class NewTexarea extends HTMLElement {
+  constructor () {
+    super();
+    this.render();
+  }
+
+  render () {
+    // Create a shadow root
+    var shadow = this.attachShadow({mode: 'open'});
+    var textarea = document.createElement('textarea');
+    shadow.appendChild(textarea);
+  }
+}
+
+class NewRadio extends HTMLElement {
+  constructor () {
+    super();
+    this.render();
+  }
+
+  render () {
+    // Create a shadow root
+    var shadow = this.attachShadow({mode: 'open'});
+    var input = document.createElement('input');
+    input.type = 'radio';
+    shadow.appendChild(input);
+  }
+}
+
 window.customElements.define('new-input', NewInput);
+window.customElements.define('new-checkbox', NewCheckbox);
+window.customElements.define('new-textarea', NewTexarea);
+window.customElements.define('new-radio', NewRadio);
